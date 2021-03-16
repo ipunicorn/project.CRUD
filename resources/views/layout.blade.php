@@ -6,7 +6,8 @@
     <title>@yield('title')</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
     <!-- Favicons -->
     <meta name="theme-color" content="#7952b3">
@@ -37,7 +38,13 @@
 <div class="container">
     <h1>@yield('title')</h1>
     <main>
-@yield('content')
+        @if(session('success'))
+            <div class="alert alert-success">{{session('success')}}</div>
+        @endisset
+        @if(session('danger'))
+            <div class="alert alert-danger">{{session('danger')}}</div>
+        @endisset
+        @yield('content')
     </main>
 </div>
 

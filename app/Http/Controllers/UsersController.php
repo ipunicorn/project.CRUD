@@ -39,7 +39,7 @@ $users = User::paginate(15);
     public function store(UserRequest $request)
     {
 User::create($request->only(['name', 'email']));
-return redirect()->route('users.index');
+return redirect()->route('users.index')->withSuccess('Created user '.$request->name);
     }
 
     /**
@@ -75,7 +75,7 @@ return redirect()->route('users.index');
     public function update(UserRequest $request, User $user): \Illuminate\Http\RedirectResponse
     {
         $user->update($request->only(['name','email']));
-return redirect()->route('users.index');
+return redirect()->route('users.index')->withSuccess('Updated user '.$user->name);
     }
 
     /**
@@ -88,6 +88,6 @@ return redirect()->route('users.index');
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->withDanger('Delete user '.$user->name);
     }
 }
