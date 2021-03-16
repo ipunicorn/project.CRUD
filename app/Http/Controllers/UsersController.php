@@ -4,24 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return Application|Factory|View|Response
      */
     public function index()
     {
-$users = User::paginate(15);
-    return view('index', compact('users'));
+        $users = User::paginate(15);
+        return view('index', compact('users'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return Application|Factory|View|Response
      */
     public function create()
     {
@@ -32,20 +39,20 @@ $users = User::paginate(15);
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(UserRequest $request)
     {
-User::create($request->only(['name', 'email']));
-return redirect()->route('users.index')->withSuccess('Created user '.$request->name);
+        User::create($request->only(['name', 'email']));
+        return redirect()->route('users.index')->withSuccess('Created user ' . $request->name);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @param User $user
+     * @return Application|Factory|View|Response
      */
     public function show(User $user)
     {
@@ -55,8 +62,8 @@ return redirect()->route('users.index')->withSuccess('Created user '.$request->n
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @param User $user
+     * @return Application|Factory|View|Response
      */
     public function edit(User $user)
     {
@@ -67,26 +74,27 @@ return redirect()->route('users.index')->withSuccess('Created user '.$request->n
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @param User $user
+     * @return RedirectResponse
      */
-    public function update(UserRequest $request, User $user): \Illuminate\Http\RedirectResponse
+    public function update(UserRequest $request, User $user): RedirectResponse
     {
-        $user->update($request->only(['name','email']));
-return redirect()->route('users.index')->withSuccess('Updated user '.$user->name);
+        $user->update($request->only(['name', 'email']));
+
+        return redirect()->route('users.index')->withSuccess('Updated user ' . $user->name);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
+     * @param User $user
+     * @return RedirectResponse
+     * @throws Exception
      */
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('users.index')->withDanger('Delete user '.$user->name);
+        return redirect()->route('users.index')->withDanger('Delete user ' . $user->name);
     }
 }

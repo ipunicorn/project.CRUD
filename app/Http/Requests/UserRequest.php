@@ -8,11 +8,6 @@ use Illuminate\Validation\Rule;
 class UserRequest extends FormRequest
 {
     /**
-     * @var mixed
-     */
-    private $user;
-
-    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
