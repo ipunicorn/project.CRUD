@@ -49,8 +49,7 @@ return redirect()->route('users.index');
      */
     public function show(User $user)
     {
-        return view('show');
-
+        return view('show', compact('user'));
     }
 
     /**
