@@ -22,6 +22,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::paginate(15);
+
         return view('index', compact('users'));
     }
 
@@ -33,7 +34,6 @@ class UsersController extends Controller
     public function create()
     {
         return view('form');
-
     }
 
     /**
@@ -45,6 +45,7 @@ class UsersController extends Controller
     public function store(UserRequest $request)
     {
         User::create($request->only(['name', 'email']));
+
         return redirect()->route('users.index')->withSuccess('Created user ' . $request->name);
     }
 
@@ -68,7 +69,6 @@ class UsersController extends Controller
     public function edit(User $user)
     {
         return view('form', compact('user'));
-
     }
 
     /**
@@ -95,6 +95,7 @@ class UsersController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+
         return redirect()->route('users.index')->withDanger('Delete user ' . $user->name);
     }
 }
