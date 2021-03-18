@@ -12,7 +12,6 @@
     <!-- Favicons -->
     <meta name="theme-color" content="#7952b3">
 
-
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -28,7 +27,6 @@
             }
         }
     </style>
-
 
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/5.0/examples/checkout/form-validation.css" rel="stylesheet">
