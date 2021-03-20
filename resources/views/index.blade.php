@@ -11,6 +11,7 @@
             <th scope="col">ID</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
+            <th scope="col">Animals</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -23,6 +24,9 @@
                 </td>
                 <td>
                     <a href="{{route('users.show', $user)}}">{{$user->email}}</a>
+                </td>
+                <td>
+                    <a>Тут будут имена животных</a>
                 </td>
                 <td>
                     <form method="POST" action="{{route('users.destroy', $user) }}">
