@@ -11,7 +11,7 @@
             <th scope="col">ID</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
-            <th scope="col">Animals</th>
+            <th scope="col">Animals name</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -26,7 +26,13 @@
                     <a href="{{route('users.show', $user)}}">{{$user->email}}</a>
                 </td>
                 <td>
-                    <a>Тут будут имена животных</a>
+                    <a href="{{route('users.show', $user)}}">
+                        @if ($user->getImplodedAnimalNames() !== '')
+                            {{ $user->getImplodedAnimalNames() }}
+                        @else
+                            No animals
+                        @endif
+                    </a>
                 </td>
                 <td>
                     <form method="POST" action="{{route('users.destroy', $user) }}">

@@ -45,6 +45,16 @@ class User extends Authenticatable
 
     public function animals(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany('App\Animal');
+        return $this->hasMany('App\Models\Animal');
+    }
+
+    public function getAnimalNames(): array
+    {
+        return array_column($this->animals()->getModels(), 'animal_name');
+    }
+
+    public function getImplodedAnimalNames(): string
+    {
+        return join(', ', $this->getAnimalNames());
     }
 }

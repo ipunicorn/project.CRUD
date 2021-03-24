@@ -17,7 +17,6 @@ class CreateAnimalsTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('animal_name');
-            $table->string('animal_type');
             $table->timestamps();
         });
     }

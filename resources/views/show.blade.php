@@ -10,6 +10,13 @@
             <li class="list-group-item">ID: {{$user->id}}</li>
             <li class="list-group-item">Name: {{$user->name}}</li>
             <li class="list-group-item">Email: {{$user->email}}</li>
+            <li class="list-group-item">Animals:
+                @if ($user->getImplodedAnimalNames() !== '')
+                    {{ $user->getImplodedAnimalNames() }}
+                @else
+                    No animals
+                @endif
+            </li>
             <li class="list-group-item">Created: {{$user->created_at->format('d/m/y H:i:s')}}</li>
             <li class="list-group-item">Updated: {{$user->updated_at->format('d/m/y H:i:s')}}</li>
 
