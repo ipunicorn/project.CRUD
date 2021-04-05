@@ -96,6 +96,7 @@ class UsersController extends Controller
      */
     public function destroy(User $user): RedirectResponse
     {
+        $user->animals()->delete();
         $user->delete();
 
         return redirect()->route('users.index')->withDanger('Delete user ' . $user->name);
