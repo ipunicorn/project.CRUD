@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UserRequest extends FormRequest
+class AnimalRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,21 +25,8 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'name' => 'required|min:3|max:255',
-            'email' => [
-                'required',
-                'min:3',
-                'max:255',
-                'email',
-            ],
+            'animal_name' => 'required|min:3|max:255',
         ];
-
-        if (!empty($this->user)) {
-            $rules['email'][] = Rule::unique('users')->ignore($this->user->id);
-            return $rules;
-        }
-
-        $rules['email'][] = Rule::unique('users');
 
         return $rules;
     }

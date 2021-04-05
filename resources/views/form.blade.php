@@ -48,7 +48,6 @@
             </div>
         </div>
 
-
         <div class="col mt-3">
             <div class="col mt-3">
                 <h3>{{isset($user) ? "About ".$user->name."'s animals" : ''}}</h3>
@@ -59,16 +58,17 @@
                 @if ($user->getImplodedAnimalNames() !== '')
                     <h5>{{$user->getImplodedAnimalNames()}}</h5>
 
-    @else
-        <h5>No animals yet</h5>
-        @endif
-                    <div class="row mt-3">
-                        <div class="col">
-                            <a class="btn btn-warning" href="{{route('users.animals', ['user' => $user->id])}}">Update
-                                animals information</a>
-                        </div>
+                @else
+                    <h5>No animals yet</h5>
+                @endif
+
+                <div class="row mt-3">
+                    <div class="col">
+                        <a class="btn btn-warning" href="{{route('users.animals', ['user' => $user->id])}}">Update
+                            animals information</a>
                     </div>
+                </div>
 
-    @endif
-
+            @endif
+        </div>
 @endsection

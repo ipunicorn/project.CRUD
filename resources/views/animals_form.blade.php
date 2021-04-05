@@ -43,6 +43,9 @@
         <input type="hidden" name="user_id" value="{{$user->id}}">
         <input name="animal_name"
                type="text" class="form-control" placeholder="New animal's name" aria-label="animal_name">
+        @error('animal_name')
+        <div class="alert alert-danger">{{$message}}</div>
+        @enderror
         <button type="submit" class="btn btn-success mt-2">Add animal</button>
     </form>
 

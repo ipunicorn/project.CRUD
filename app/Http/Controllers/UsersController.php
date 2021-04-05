@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AnimalRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\Animal;
 use App\Models\User;
@@ -105,17 +106,16 @@ class UsersController extends Controller
         return view('animals_form', compact('user'));
     }
 
-    public function animalsStore(Request $request)
+    public function animalsStore(AnimalRequest $request)
     {
         Animal::create($request->only('user_id', 'animal_name'));
+
         return redirect(route('users.animals', ['user' => $request->user_id]))->withSuccess($request->animal_name. ' was successfully added');
     }
     public function animalsDestroy(User $user, Animal $animal)
     {
         $animal->delete();
+
         return redirect(route('users.animals', ['user' => $user->id]))->withDanger('Animal was successfully deleted');
-
     }
-
-
 }
