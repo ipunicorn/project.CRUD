@@ -62,4 +62,11 @@ class User extends Authenticatable
     {
         return $this->animals()->getModels();
     }
+
+    public function getAnimalId(): array
+    {
+        return array_column($this->animals()->getModels(), 'id');
+    }
+
+
 }

@@ -112,8 +112,13 @@ class UsersController extends Controller
 
         return redirect(route('users.animals', ['user' => $request->user_id]))->withSuccess($request->animal_name. ' was successfully added');
     }
+
     public function animalsDestroy(User $user, Animal $animal)
     {
+        if (!in_array($animal->id, $user->getAnimalID())) {
+            return redirect(route('users.animals', ['user' => $user->id]))->withDanger('Animal does not exist');
+        }
+
         $animal->delete();
 
         return redirect(route('users.animals', ['user' => $user->id]))->withDanger('Animal was successfully deleted');
