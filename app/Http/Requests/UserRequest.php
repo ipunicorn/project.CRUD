@@ -36,6 +36,7 @@ class UserRequest extends FormRequest
 
         if (!empty($this->user)) {
             $rules['email'][] = Rule::unique('users')->ignore($this->user->id);
+
             return $rules;
         }
 

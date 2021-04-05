@@ -38,7 +38,7 @@
                    value="{{old('email', isset($user) ? $user->email : null)}}"
                    type="text" class="form-control" placeholder="Email" aria-label="email">
             @error('email')
-            <div class="alert alert-danger">{{$message}}</div>
+            <div class="alert alert-danger mt-2">{{$message}}</div>
             @enderror
         </div>
 
