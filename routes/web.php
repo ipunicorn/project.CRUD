@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', 'users');
 
 Route::resource('users', UsersController::class);
+
+Route::get('users/{user}/animals', 'App\Http\Controllers\UsersController@animals')->name('users.animals');
+Route::post('users/{user}/animals/store', 'App\Http\Controllers\UsersController@animalsStore')->name('users.store.animals');
+Route::DELETE('users/{user}/animals/{animal}/destroy', 'App\Http\Controllers\UsersController@animalsDestroy')->name('users.animal.destroy');

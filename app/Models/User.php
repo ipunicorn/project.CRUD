@@ -57,4 +57,10 @@ class User extends Authenticatable
     {
         return join(', ', $this->getAnimalNames());
     }
+
+    public function getAnimal(): array
+    {
+        return $this->animals()->getModels();
+    }
+
 }

@@ -5,9 +5,11 @@
 @section('content')
 
     <a type="button" class="btn btn-info" href="{{route('users.index')}}">Back to users</a>
+
     <div class="col mt-3">
         <h3>{{isset($user) ? "About ".$user->name: ''}}</h3>
     </div>
+
     <form method="POST"
           @isset($user)
           action="{{route('users.update', $user)}}"
@@ -30,6 +32,7 @@
                 @enderror
             </div>
         </div>
+
         <div class="col mt-3">
             <input name="email"
                    value="{{old('email', isset($user) ? $user->email : null)}}"
@@ -45,6 +48,7 @@
             </div>
         </div>
 
+
         <div class="col mt-3">
             <div class="col mt-3">
                 <h3>{{isset($user) ? "About ".$user->name."'s animals" : ''}}</h3>
@@ -55,19 +59,16 @@
                 @if ($user->getImplodedAnimalNames() !== '')
                     <h5>{{$user->getImplodedAnimalNames()}}</h5>
 
-                @else
-                    <h5>No animals yet</h5>
-                @endif
-            @endif
-        </div>
+    @else
+        <h5>No animals yet</h5>
+        @endif
+                    <div class="row mt-3">
+                        <div class="col">
+                            <a class="btn btn-warning" href="{{route('users.animals', ['user' => $user->id])}}">Update
+                                animals information</a>
+                        </div>
+                    </div>
 
-        <div class="row mt-3">
-            <div class="col">
-
-                <a class="btn btn-warning" href="{{route('users.index')}}">Update animals information</a>
-
-            </div>
-        </div>
-    </form>
+    @endif
 
 @endsection
